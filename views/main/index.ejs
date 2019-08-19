@@ -9,6 +9,7 @@
     </head>
   <body>
     <div class="navbar">
+            <a href="/">Main page</a>
         <% if (isLogged) { %>
             <a href="/add-message">Add message</a>
         <% } %>
@@ -25,7 +26,12 @@
 
     <% messages.map(message => {%>
         <div class="message-card">
+            <% if (isLogged) { %>
             <p>Author: <%= message.nickname %></p>
+            <hr>
+            <% } else { %>
+            <p>Author: Anon</p>
+            <% } %>
             <p><%= message.msgText %></p>
         </div>
     <% }) %>

@@ -1,0 +1,14 @@
+.form-control {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-control label {
+    padding: 10px;
+    background: rgb(250, 18, 18);
+    color: rgb(255, 255, 255);
+    width: 70px;
+    text-align: center;
+    font-size: 17px;
+  }
