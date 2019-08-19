@@ -1,0 +1,41 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.message-card {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+    max-width: 600px;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar a,
+.navbar button {
+    font: inherit;
+    background: transparent;
+    cursor: pointer;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border: none;
+    outline: none;
+}
+
+/* .main-header__item a,
+.main-header__item button {
+  
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+} */

@@ -32,10 +32,12 @@ exports.postLogin = (req, res, next) => {
 
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
+  const nickname =req.body.nickname;
   const password = req.body.password;
 
   const user = new User({
     email,
+    nickname,
     password
   });
   user
@@ -47,3 +49,10 @@ exports.postSignup = (req, res, next) => {
       console.log(errr);
     });
 };
+
+exports.postLogout = (req,res,next) => {
+  req.session.destroy(err => {
+    console.log(err);
+    res.redirect('/')
+  })
+}

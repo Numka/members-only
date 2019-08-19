@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
-</head>
-<body>
-    <h1>Index</h1>
-    <a href="/add-message">Add message</a>
-    <a href="/login">Login</a>
-    <a href="/signup">Signup</a>
-    <% if (isLogged) { %>
-        <p>You are logged in!</p>
-    <% } %>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet, incidunt?</p>
-    <%= tryingEjs %>
-    <ul>
-        <% messages.map(message => {%>
-            <li><%= message.msgText %></li>
-        <% }) %>
-    </ul>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Index</title>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+  <body>
+    <div class="navbar">
+        <% if (isLogged) { %>
+            <a href="/add-message">Add message</a>
+        <% } %>
+        <% if (!isLogged) { %>
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+        <% } %>
+        <% if (isLogged) { %>
+            <form action="/logout" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        <% } %>
+    </div>
+
+    <% messages.map(message => {%>
+        <div class="message-card">
+            <p>Author: <%= message.nickname %></p>
+            <p><%= message.msgText %></p>
+        </div>
+    <% }) %>
+    
+  </body>
 </html>

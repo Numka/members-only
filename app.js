@@ -28,6 +28,7 @@ app.set("view engine", "ejs");
 
 //parser BEFORE routes use
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
     secret: "secret car",

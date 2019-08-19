@@ -5,10 +5,11 @@ exports.getAddMessage = (req, res, next) => {
 };
 
 exports.postAddMessage = (req, res, next) => {
-  console.log(req.body);
+  const nickname = req.user.nickname; 
   const msgText = req.body.msgtext;
 
   const message = new Message({
+    nickname,
     msgText
   });
   message
@@ -22,3 +23,5 @@ exports.postAddMessage = (req, res, next) => {
       console.log(err);
     });
 };
+
+// req.user -> take nickname -> assign this id to the message

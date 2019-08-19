@@ -6,6 +6,10 @@ const messageSchema = new Schema({
     msgText: {
         type: String,
         required: true
+    },
+    nickname: {
+        type: String,
+        required: true
     }
 })
 
