@@ -54,8 +54,8 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  req.session.myValue = "myValue";
-  console.log(req.session);
+  res.locals.isLogged = req.session.isLoggedIn
+  //console.log(req.session);
   next();
 });
 

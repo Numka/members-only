@@ -1,0 +1,15 @@
+<div class="navbar">
+        <a href="/">Main page</a>
+    <% if (isLogged) { %>
+        <a href="/add-message">Add message</a>
+    <% } %>
+    <% if (!isLogged) { %>
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+    <% } %>
+    <% if (isLogged) { %>
+        <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    <% } %>
+</div>
