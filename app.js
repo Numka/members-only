@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const path = require("path");
 
 const express = require("express");
@@ -14,13 +15,13 @@ const messageRoutes = require("./routes/message");
 const authRoutes = require("./routes/auth");
 
 //database access URI
-const MONGODB_URI =
-  "mongodb+srv://numinor:toTheStars819@cluster0-8dfz5.mongodb.net/members?retryWrites=true&w=majority";
+//const MONGODB_URI =
+//  "mongodb+srv://numinor:toTheStars819@cluster0-8dfz5.mongodb.net/members?retryWrites=true&w=majority";
 
 //initialize app
 const app = express();
 const store = new mongoDBstore({
-  uri: MONGODB_URI,
+  uri: process.env.MONGODB_URI,
   collection: "sessions"
 });
 
@@ -66,7 +67,7 @@ app.use(authRoutes);
 
 //database + starting to listen
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(result => {
     console.log("CONNECTED");
     app.listen(3000);
