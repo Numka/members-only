@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const bcrypt = require("bcrypt");
 
 exports.getLogin = (req, res, next) => {
   res.render("auth/login");
@@ -14,16 +15,19 @@ exports.postLogin = (req, res, next) => {
 
   User.findOne({ email: email })
     .then(user => {
-        if (user.password.toString() === password.toString()) {
-            req.session.isLoggedIn = true;
-            req.session.user = user;
-            return req.session.save(err => {
-                console.log(err);
-                res.redirect('/');
-            });
+      bcrypt.compare(password, user.password, (err, doMatch) => {
+        if (doMatch) {
+          req.session.isLoggedIn = true;
+          req.session.user = user;
+          return req.session.save(err => {
+            console.log(err);
+            res.redirect("/");
+          });
         } else {
-            res.redirect('/login');
+          console.log(err);
+          res.redirect("/login");
         }
+      });
     })
     .catch(err => {
       console.log(err);
@@ -32,27 +36,34 @@ exports.postLogin = (req, res, next) => {
 
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
-  const nickname =req.body.nickname;
+  const nickname = req.body.nickname;
   const password = req.body.password;
+  const confrimPassword = req.body.confrimPassword;
 
-  const user = new User({
-    email,
-    nickname,
-    password
-  });
-  user
-    .save()
-    .then(result => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      console.log(errr);
+  if (password.toString() !== confrimPassword.toString()) {
+    return res.redirect("/signup");
+  }
+
+  bcrypt.hash(password, 12, (err, hashedPassword) => {
+    const user = new User({
+      email,
+      nickname,
+      password: hashedPassword
     });
+    return user
+      .save()
+      .then(result => {
+        res.redirect("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 };
 
-exports.postLogout = (req,res,next) => {
+exports.postLogout = (req, res, next) => {
   req.session.destroy(err => {
     console.log(err);
-    res.redirect('/')
-  })
-}
+    res.redirect("/");
+  });
+};
