@@ -14,10 +14,6 @@ const mainRoutes = require("./routes/main");
 const messageRoutes = require("./routes/message");
 const authRoutes = require("./routes/auth");
 
-//database access URI
-//const MONGODB_URI =
-//  "mongodb+srv://numinor:toTheStars819@cluster0-8dfz5.mongodb.net/members?retryWrites=true&w=majority";
-
 //initialize app
 const app = express();
 const store = new mongoDBstore({
