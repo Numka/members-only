@@ -1,12 +1,20 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const { validationResult } = require("express-validator");
 
 exports.getLogin = (req, res, next) => {
-  res.render("auth/login");
+  res.render("auth/login", {
+    path: "/login",
+    errorMessage: undefined
+  });
 };
 
 exports.getSignup = (req, res, next) => {
-  res.render("auth/signup");
+  res.render("auth/signup", {
+    path: "/signup",
+    errorMessage: undefined,
+    oldInput: { email: "", nickname: "", password: "", confirmPassword: "" }
+  });
 };
 
 exports.postLogin = (req, res, next) => {
@@ -38,11 +46,25 @@ exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const nickname = req.body.nickname;
   const password = req.body.password;
-  const confrimPassword = req.body.confrimPassword;
+  const confirmPassword = req.body.confirmPassword;
 
-  if (password.toString() !== confrimPassword.toString()) {
-    return res.redirect("/signup");
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    return res.render("auth/signup", {
+      path: "/signup",
+      errorMessage: errors.array()[0].msg,
+      validationErrors: errors.array(),
+      oldInput: { email, nickname, password, confirmPassword }
+    });
   }
+  // if (password.toString() !== confrimPassword.toString()) {
+  //   console.log(validationErrors);
+  //   return res.render("auth/signup", {
+  //     validationErrors
+  //   });
+  // }
 
   bcrypt.hash(password, 12, (err, hashedPassword) => {
     const user = new User({

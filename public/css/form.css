@@ -1,6 +1,13 @@
-form {
-    padding: 5px;
-    margin: 5px;
+.form-signup {
+    margin: 25px;
+}
+
+.form-login {
+    margin: 25px;
+}
+
+.form-add {
+    margin: 25px;
 }
 
 .form-control {
@@ -11,9 +18,10 @@ form {
 
 .form-control label {
     padding: 10px;
-    background: rgb(250, 18, 18);
+    background:rgb(31, 184, 31);
     color: rgb(255, 255, 255);
     width: 70px;
     text-align: center;
     font-size: 17px;
   }
+

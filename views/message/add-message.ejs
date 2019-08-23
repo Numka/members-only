@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add message</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
-    Add message
-    <form action="/add-message" method="POST">
-        <textarea name="msgtext" id="msgtext" cols="30" rows="5"></textarea>
-        <button type="submit">Add!</button>
+    <%- include('../include/navbar'); %>
+
+    <form class="form-add" action="/add-message" method="POST">
+        <div class="form-control">
+            <textarea name="msgtext" id="msgtext" cols="40" rows="10"></textarea>
+        </div>
+        <button class="message-submit" type="submit">Add!</button>
     </form>
 </body>
 </html>

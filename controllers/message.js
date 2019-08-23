@@ -1,7 +1,9 @@
 const Message = require("../models/message");
 
 exports.getAddMessage = (req, res, next) => {
-  res.render("message/add-message");
+  res.render("message/add-message", {
+    path: '/add-message'
+  });
 };
 
 exports.postAddMessage = (req, res, next) => {

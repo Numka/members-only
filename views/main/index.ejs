@@ -14,10 +14,10 @@
         <div class="message-card">
             <% if (isLogged) { %>
             <p>Author: <%= message.nickname %></p>
-            <hr>
             <% } else { %>
             <p>Author: Anon</p>
             <% } %>
+            <hr>
             <p><%= message.msgText %></p>
         </div>
     <% }) %>

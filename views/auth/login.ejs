@@ -10,7 +10,7 @@
 </head>
 <body>
     <%- include('../include/navbar'); %>
-    <form action="/login" method="POST">
+    <form class="form-login" action="/login" method="POST">
         <div class="form-control">
             <label for="email">Email</label>
             <input type="email" name="email">
@@ -19,7 +19,7 @@
             <label for="password">Password</label>
             <input type="password" name="password">
         </div>
-        <button type="submit">Login</button>
+        <button class="login-submit" type="submit">Login</button>
     </form>
 </body>
 </html>

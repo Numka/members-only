@@ -1,11 +1,19 @@
 <div class="navbar">
-        <a href="/">Main page</a>
+        <a 
+            class="<%= path == '/' ? 'active' : '' %>"
+            href="/">Main page</a>
     <% if (isLogged) { %>
-        <a href="/add-message">Add message</a>
+        <a 
+            class="<%= path == '/add-message' ? 'active' : '' %>"
+            href="/add-message">Add message</a>
     <% } %>
     <% if (!isLogged) { %>
-        <a href="/login">Login</a>
-        <a href="/signup">Signup</a>
+        <a 
+            class="<%= path == '/login' ? 'active' : '' %>"
+            href="/login">Login</a>
+        <a 
+            class="<%= path == '/signup' ? 'active' : '' %>"
+            href="/signup">Signup</a>
     <% } %>
     <% if (isLogged) { %>
         <form action="/logout" method="POST">

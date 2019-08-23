@@ -10,24 +10,42 @@
 </head>
 <body>
     <%- include('../include/navbar'); %>
-    <form action="/signup" method="POST">
+    <% if (errorMessage) { %>
+        <div class="error-message">
+            <p><%= errorMessage %></p>
+        </div>
+    <% } %>
+    <form class="form-signup" action="/signup" method="POST">
         <div class="form-control">
             <label for="email">Email</label>
-            <input type="email" name="email">
+            <input 
+                type="email" 
+                name="email" 
+                id="email"
+                value="<%= oldInput.email %>">
         </div>
         <div class="form-control">
-            <label for="email">Nickname</label>
-            <input type="nickname" name="nickname">
+            <label for="nickname">Nickname</label>
+            <input 
+                type="text" 
+                name="nickname"
+                value="<%= oldInput.nickname %>">
         </div>
         <div class="form-control">
-            <label for="email">Password</label>
-            <input type="password" name="password">
+            <label for="password">Password</label>
+            <input 
+                type="password" 
+                name="password"
+                value="<%= oldInput.password %>">
         </div>
         <div class="form-control">
-            <label for="email">Confrim Password</label>
-            <input type="password" name="confrimPassword">
+            <label for="confirmPassword">Confrim Password</label>
+            <input 
+                type="password" 
+                name="confirmPassword"
+                value="<%= oldInput.confirmPassword %>">
         </div>
-        <button type="submit">Signup</button>
+        <button class="signup-submit" type="submit">Signup</button>
     </form>
 </body>
 </html>
