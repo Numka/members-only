@@ -16,22 +16,14 @@
         </div>
     <% } %>
     <form class="form-login" action="/login" method="POST">
+        <p>Enter your email for password reset.</p>
         <div class="form-control">
             <label for="email">Email</label>
             <input 
                 type="email" 
-                name="email"
-                value="<%= oldInput.email %>">
+                name="email">
         </div>
-        <div class="form-control">
-            <label for="password">Password</label>
-            <input 
-                type="password" 
-                name="password"
-                value="<%= oldInput.password %>"">
-        </div>
-        <button class="login-submit" type="submit">Login</button>
-        <a href="/reset">Reset password</a>
+        <button class="login-submit" type="submit">Reset</button>
     </form>
 </body>
 </html>

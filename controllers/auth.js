@@ -5,7 +5,8 @@ const { validationResult } = require("express-validator");
 exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     path: "/login",
-    errorMessage: undefined
+    errorMessage: undefined,
+    oldInput: { email: "", password: "" }
   });
 };
 
@@ -21,6 +22,8 @@ exports.postLogin = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  const errors = validationResult(req);
+
   User.findOne({ email: email })
     .then(user => {
       bcrypt.compare(password, user.password, (err, doMatch) => {
@@ -28,12 +31,16 @@ exports.postLogin = (req, res, next) => {
           req.session.isLoggedIn = true;
           req.session.user = user;
           return req.session.save(err => {
-            console.log(err);
+            //console.log(err);
             res.redirect("/");
           });
         } else {
           console.log(err);
-          res.redirect("/login");
+          res.status(422).render("auth/login", {
+            path: "/login",
+            errorMessage: "Wrond email or password!",
+            oldInput: { email, password }
+          });
         }
       });
     })
@@ -52,19 +59,13 @@ exports.postSignup = (req, res, next) => {
 
   if (!errors.isEmpty()) {
     console.log(errors);
-    return res.render("auth/signup", {
+    return res.status(422).render("auth/signup", {
       path: "/signup",
       errorMessage: errors.array()[0].msg,
       validationErrors: errors.array(),
       oldInput: { email, nickname, password, confirmPassword }
     });
   }
-  // if (password.toString() !== confrimPassword.toString()) {
-  //   console.log(validationErrors);
-  //   return res.render("auth/signup", {
-  //     validationErrors
-  //   });
-  // }
 
   bcrypt.hash(password, 12, (err, hashedPassword) => {
     const user = new User({
@@ -85,7 +86,31 @@ exports.postSignup = (req, res, next) => {
 
 exports.postLogout = (req, res, next) => {
   req.session.destroy(err => {
-    console.log(err);
     res.redirect("/");
   });
 };
+
+exports.getReset = (req, res, next) => {
+  res.render("auth/reset", {
+    path: "/reset",
+    errorMessage: ""
+  });
+};
+
+exports.postReset = (req, res, next) => {
+  const email = req.body.email;
+
+  User.find({ email: email })
+    .then()
+    .catch(err => {
+      console.log(err);
+      res.status(422).render("auth/reset", {
+        path: "/reset",
+        errorMessage: "There is no user with such email!"
+      });
+    });
+};
+
+exports.getNewPassword = (req, res, next) => {};
+
+exports.postNewPassword = (req, res, next) => {};

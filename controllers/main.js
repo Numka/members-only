@@ -7,7 +7,7 @@ exports.getIndex = (req, res, next) => {
     .then(messages => {
       res.render("main/index", {
         path: '/',
-        messages,
+        messages: messages.reverse(),
         tryingEjs: "200"
       });
     })
