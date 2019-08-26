@@ -1,3 +1,4 @@
+// dependencies
 const dotenv = require('dotenv').config();
 const path = require("path");
 
@@ -21,6 +22,7 @@ const store = new mongoDBstore({
   collection: "sessions"
 });
 
+//view engine
 app.set("view engine", "ejs");
 
 //parser BEFORE routes use
@@ -35,6 +37,7 @@ app.use(
   })
 );
 
+//populate session with user data
 app.use((req, res, next) => {
   if (!req.session.user) {
     next();
@@ -50,6 +53,7 @@ app.use((req, res, next) => {
   }
 });
 
+//set up locals for render function
 app.use((req, res, next) => {
   res.locals.isLogged = req.session.isLoggedIn
   //console.log(req.session);
