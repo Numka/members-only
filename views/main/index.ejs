@@ -19,9 +19,9 @@
             <% } %>
             <hr>
             <p><%= message.msgText %></p>
-            <div class="message-card--actions">
-              <a href="">Delete</a>
-            </div>
+            <form class="message-card--actions" action='/delete-message/:<%= message._id %>' method="POST">
+              <button class="delete-message" type="submit">Delete</button>
+            </form>
         </div>
     <% }) %>
     </div>

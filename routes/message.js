@@ -11,4 +11,6 @@ router.get('/add-message', isAuth, messageController.getAddMessage);
 
 router.post('/add-message', isAuth, messageController.postAddMessage);
 
+router.post('/delete-message/:messageId', isAuth, messageController.postDeleteMessage)
+
 module.exports = router;

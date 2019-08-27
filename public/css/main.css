@@ -75,6 +75,19 @@ html {
   background-color: rgb(25, 145, 25);
 }
 
+.delete-message {
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 7px 14px;
+  background-color: rgb(31, 184, 31);
+  font-size: 1rem;
+}
+
+.delete-message:hover {
+  background-color: rgb(25, 145, 25);
+}
+
 .navbar a.active {
   background-color: #4caf50;
   color: white;
