@@ -9,8 +9,8 @@
     </head>
   <body>
     <%- include('../include/navbar'); %>
-
-    <% messages.map(message => {%>
+    <div class="message-flow">
+      <% messages.map(message => {%>
         <div class="message-card">
             <% if (isLogged) { %>
             <p>Author: <%= message.nickname %></p>
@@ -24,6 +24,6 @@
             </div>
         </div>
     <% }) %>
-    
+    </div>
   </body>
 </html>
