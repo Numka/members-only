@@ -66,11 +66,12 @@ app.use(messageRoutes);
 app.use(authRoutes);
 
 //database + starting to listen
+const port = process.env.PORT || 3000
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(result => {
     console.log("CONNECTED");
-    app.listen(3000);
+    app.listen(port, () => console.log(`app started and listens on port ${port}`));
   })
   .catch(err => {
     console.log(err);
