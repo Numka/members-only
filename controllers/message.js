@@ -28,6 +28,9 @@ exports.postAddMessage = (req, res, next) => {
 
 exports.postDeleteMessage = (req, res, next) => {
   const messageId = req.params.messageId.slice(1);
+  const user = req.body.userid;
+
+  console.log(user);
 
   Message.findByIdAndDelete(messageId)
     .then(message => {

@@ -13,14 +13,15 @@
       <% messages.map(message => {%>
         <div class="message-card">
             <% if (isLogged) { %>
-            <p>Author: <%= message.nickname %></p>
+            <div class="message-card--author">Author: <%= message.nickname %></div>
             <% } else { %>
-            <p>Author: Anon</p>
+            <div class="message-card--author">Author: Anon</div>
             <% } %>
             <hr>
             <p><%= message.msgText %></p>
             <form class="message-card--actions" action='/delete-message/:<%= message._id %>' method="POST">
               <button class="delete-message" type="submit">Delete</button>
+              <input type="hidden" name="userid" value="<%= user.id %>">
             </form>
         </div>
     <% }) %>

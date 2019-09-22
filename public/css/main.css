@@ -31,6 +31,17 @@ html {
   width: 100%;
 }
 
+.message-card--author {
+  width: 25%;
+  padding: 7px 14px;
+  margin: 7px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  border: 1px green solid;
+  border-radius: 5px;
+}
+
 .navbar {
   background-color: #333;
   overflow: hidden;
@@ -80,12 +91,13 @@ html {
   cursor: pointer;
   color: white;
   padding: 7px 14px;
-  background-color: rgb(31, 184, 31);
-  font-size: 1rem;
+  margin: 2px;
+  background-color: rgb(206, 82, 45);
+  font-size: 0.8rem;
 }
 
 .delete-message:hover {
-  background-color: rgb(25, 145, 25);
+  background-color: rgb(167, 66, 36);
 }
 
 .navbar a.active {

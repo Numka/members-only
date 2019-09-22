@@ -8,7 +8,8 @@ exports.getIndex = (req, res, next) => {
       res.render("main/index", {
         path: '/',
         messages: messages.reverse(),
-        tryingEjs: "200"
+        tryingEjs: "200",
+        user: req.user
       });
     })
     .catch(err => {
