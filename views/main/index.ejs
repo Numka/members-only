@@ -19,6 +19,12 @@
             <% } %>
             <hr>
             <p><%= message.msgText %></p>
+            <% if (isLogged) { %>
+            <form class="message-card--actions" action='/delete-message/:<%= message._id %>' method="POST">
+              <button class="delete-message" type="submit">Delete</button>
+              <input type="hidden" name="userid" value="<%= user.id %>">
+            </form>
+            <% } %>
         </div>
     <% }) %>
     </div>
