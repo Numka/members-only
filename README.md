@@ -1,7 +1,10 @@
-Description
-- This is members-only application. 
+# Deployed version:
+- https://members-only-numinor.herokuapp.com
 
-Why did I do this?
+# Description
+- This is members-only application. It's part of https://www.theodinproject.com/ node course. I was tasked to make my own version, which you can see here. I dont think that this is finished project. Although, core functionality is there I intend to improve it incremently, i.e. over time and bit by bit.
+
+# Why did I do this?
 - First of all I wanted to learn how authentication forkflow works. 
 - I learnt:
 	- Why we use cookies and sessions, 
